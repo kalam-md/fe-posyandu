@@ -20,10 +20,10 @@ export default function page() {
           <h2 className="text-3xl font-bold tracking-tight">
             Hi, Selamat Datang Kader
           </h2>
-          {/* <div className="items-center hidden space-x-2 md:flex">
+          <div className="items-center hidden space-x-2 md:flex">
             <CalendarDateRangePicker />
             <Button>Download</Button>
-          </div> */}
+          </div>
         </div>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <Card>
@@ -57,16 +57,6 @@ export default function page() {
             </CardContent>
           </Card>
         </div>
-        {/* <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-7">
-          <Card className="col-span-8">
-            <CardHeader>
-              <CardTitle>Overview</CardTitle>
-            </CardHeader>
-            <CardContent className="pl-2">
-              <Overview />
-            </CardContent>
-          </Card>
-        </div> */}
       </div>
     </ScrollArea>
   );

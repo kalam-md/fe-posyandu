@@ -16,9 +16,20 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import GoogleSignInButton from '../github-auth-button';
+import Link from 'next/link';
 
+const phoneRegex = /^[0-9]{10,15}$/;
 const formSchema = z.object({
-  email: z.string().email({ message: 'Enter a valid email address' })
+  no_telp: z.string()
+    .refine((val) => phoneRegex.test(val), {
+      message: 'Masukan nomor telepon yang benar',
+    }),
+    password: z.string()
+    .min(8, { message: 'Kata sandi harus terdiri dari minimal 8 karakter' })
+    .refine((val) => /[A-Z]/.test(val), { message: 'Kata sandi harus mengandung setidaknya satu huruf besar' })
+    .refine((val) => /[a-z]/.test(val), { message: 'Kata sandi harus mengandung setidaknya satu huruf kecil' })
+    .refine((val) => /[0-9]/.test(val), { message: 'Kata sandi harus mengandung setidaknya satu angka' })
+    .refine((val) => /[!@#$%^&*]/.test(val), { message: 'Kata sandi harus mengandung setidaknya satu karakter khusus' }),
 });
 
 type UserFormValue = z.infer<typeof formSchema>;
@@ -28,7 +39,8 @@ export default function UserAuthForm() {
   const callbackUrl = searchParams.get('callbackUrl');
   const [loading, setLoading] = useState(false);
   const defaultValues = {
-    email: 'demo@gmail.com'
+    no_telp: '087708956070',
+    password: "admin123"
   };
   const form = useForm<UserFormValue>({
     resolver: zodResolver(formSchema),
@@ -37,7 +49,8 @@ export default function UserAuthForm() {
 
   const onSubmit = async (data: UserFormValue) => {
     signIn('credentials', {
-      email: data.email,
+      no_telp: data.no_telp,
+      password: data.password,
       callbackUrl: callbackUrl ?? '/dashboard'
     });
   };
@@ -51,14 +64,32 @@ export default function UserAuthForm() {
         >
           <FormField
             control={form.control}
-            name="email"
+            name="no_telp"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>Nomor Telepon</FormLabel>
                 <FormControl>
                   <Input
-                    type="email"
-                    placeholder="Enter your email..."
+                    type="text"
+                    placeholder="Masukan nomor telepon..."
+                    disabled={loading}
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Password</FormLabel>
+                <FormControl>
+                  <Input
+                    type="password"
+                    placeholder="Masukan password..."
                     disabled={loading}
                     {...field}
                   />
@@ -68,8 +99,8 @@ export default function UserAuthForm() {
             )}
           />
 
-          <Button disabled={loading} className="ml-auto w-full" type="submit">
-            Continue With Email
+          <Button disabled={loading} className="w-full ml-auto" type="submit">
+            Submit
           </Button>
         </form>
       </Form>
@@ -78,12 +109,11 @@ export default function UserAuthForm() {
           <span className="w-full border-t" />
         </div>
         <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-background px-2 text-muted-foreground">
-            Or continue with
+          <span className="px-2 bg-background text-muted-foreground">
+            Jika belum punya akun silahkan <Link href="/register" className='text-blue-700 underline'>Register</Link>
           </span>
         </div>
       </div>
-      <GoogleSignInButton />
     </>
   );
 }

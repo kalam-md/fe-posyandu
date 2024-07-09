@@ -10,19 +10,16 @@ import React from 'react';
 
 export default function Page() {
   const breadcrumbItems = [
-    { title: 'Wus Pus', link: '/dashboard/bayi' },
-    {
-      title: 'Laporkan Meninggal',
-      link: '/dashboard/wuspus/laporkan-meninggal'
-    }
+    { title: 'Wus Pus', link: '/dashboard/wuspus' },
+    { title: 'Catat Pemeriksaan', link: '/dashboard/wuspus/pemeriksaan' }
   ];
   return (
-    <div className="flex-1 space-y-4 p-4">
-      <ScrollArea className="h-full">
+    <ScrollArea className="h-full">
+      <div className="flex-1 space-y-4 p-4">
         <div className="flex-1 space-y-4 p-5">
           <BreadCrumb items={breadcrumbItems} />
           <div className="flex items-start justify-between">
-            <Heading title={`Laporkan Meninggal Data Wus Pus`} description="" />
+            <Heading title={`Catat Pemeriksaan Data Wus Pus`} description="" />
           </div>
           <Separator />
 
@@ -32,8 +29,8 @@ export default function Page() {
               <Input type="text" id="tanggal" />
             </div>
             <div className="w-full max-w-sm items-center gap-1.5">
-              <Label htmlFor="tempat">Tempat Pelayanan</Label>
-              <Input type="text" id="tempat" />
+              <Label htmlFor="tb">LILA</Label>
+              <Input type="text" id="tb" />
             </div>
           </div>
 
@@ -41,7 +38,7 @@ export default function Page() {
             <Button className="mt-2">Simpan</Button>
           </div>
         </div>
-      </ScrollArea>
-    </div>
+      </div>
+    </ScrollArea>
   );
 }

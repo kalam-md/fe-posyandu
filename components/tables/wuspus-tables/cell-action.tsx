@@ -48,18 +48,15 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
           <DropdownMenuItem onClick={() => router.push(`/dashboard/wuspus/${data.slug}/edit`)}>
             <Edit className="w-4 h-4 mr-2" /> Edit
           </DropdownMenuItem>
-          {/* <DropdownMenuItem onClick={() => router.push(`/dashboard/wuspus/${data.slug}/grafik-pertumbuhan`)}>
-            <BarChart className="w-4 h-4 mr-2" /> Grafik Pertumbuhan
+          <DropdownMenuItem onClick={() => router.push(`/dashboard/wuspus/${data.slug}/pemeriksaan`)}>
+            <Ruler className="w-4 h-4 mr-2" /> Pemeriksaan
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => router.push(`/dashboard/wuspus/${data.slug}/catat-pengukuran`)}>
-            <Ruler className="w-4 h-4 mr-2" /> Catat Pengukuran
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => router.push(`/dashboard/wuspus/${data.slug}/riwayat-pengukuran`)}>
+          {/* <DropdownMenuItem onClick={() => router.push(`/dashboard/wuspus/${data.slug}/riwayat-pengukuran`)}>
             <History className="w-4 h-4 mr-2" /> Riwayat Pengukuran
-          </DropdownMenuItem>
+          </DropdownMenuItem> */}
           <DropdownMenuItem onClick={() => router.push(`/dashboard/wuspus/${data.slug}/laporkan-meninggal`)}>
             <MessageCircle className="w-4 h-4 mr-2" /> Laporkan Meninggal
-          </DropdownMenuItem> */}
+          </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setOpen(true)}>
             <Trash className="w-4 h-4 mr-2" /> Hapus
           </DropdownMenuItem>

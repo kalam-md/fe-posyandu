@@ -15,8 +15,8 @@ export default function Page() {
   ];
   return (
     <ScrollArea className="h-full">
-      <div className="flex-1 p-4 space-y-4">
-        <div className="flex-1 p-5 space-y-4">
+      <div className="flex-1 space-y-4 p-4">
+        <div className="flex-1 space-y-4 p-5">
           <BreadCrumb items={breadcrumbItems} />
           <div className="flex items-start justify-between">
             <Heading
